@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-if exists("g:loaded_accent") || &cp
+if exists('g:loaded_accent') || &compatible
   finish
 endif
 let g:loaded_accent = 1
@@ -20,11 +20,11 @@ let s:lists = [
 \ ]
 
 function! s:cycle(char)
-  for list in s:lists
-    let index = index(list, a:char)
-    if index != -1
-      let replacement = list[ (index + 1) % len(list) ]
-      silent execute 'normal! r'.replacement
+  for l:list in s:lists
+    let l:index = index(l:list, a:char)
+    if l:index != -1
+      let l:replacement = l:list[ (l:index + 1) % len(l:list) ]
+      silent execute 'normal! r' . l:replacement
       break
     endif
   endfor
@@ -32,24 +32,22 @@ endfunction
 
 function! AccentCompletion(findstart, base)
   if a:findstart
-    let char = getline('.')[col('.')-2]
-    for list in s:lists
-      let index = index(list, char)
-      if index != -1
+    let l:char = getline('.')[col('.') - 2]
+    for l:list in s:lists
+      let l:index = index(l:list, l:char)
+      if l:index != -1
         return col('.') - 2
       endif
     endfor
     return -3
-
   elseif empty(a:base)
     " cargo culted
     return []
-
   else
-    for list in s:lists
-      let index = index(list, a:base)
-      if index != -1
-        return list
+    for l:list in s:lists
+      let l:index = index(l:list, a:base)
+      if l:index != -1
+        return l:list
       endif
     endfor
     return []
