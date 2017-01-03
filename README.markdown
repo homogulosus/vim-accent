@@ -9,10 +9,15 @@ How would you type `ä` in insert mode?  How would you replace `a` with `ä` in 
 
 In insert mode: type `a` and hit `<CTRL-X><CTRL-U>` to bring up a list of accented `a`s to choose from.
 
-In normal mode with the cursor on `a`: use `gx` to cycle through the alternatives.
+~~In normal mode with the cursor on `a`: use `gx` to cycle through the alternatives.~~
 
 It's always the same process, no matter what accent you want.
 
+To cycle through alternatives in normal mode, you need to set a key map:
+
+```vim
+nmap gx <Plug>(accent)
+```
 
 ## Digraphs
 
