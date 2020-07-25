@@ -10,6 +10,5 @@ set completefunc=accent#AccentCompletion
 nnoremap <silent> <Plug>(accent)
       \ :call <SID>accent#Cycle(matchstr(getline('.'), '\%'.col('.').'c.'))<CR>
 
-" TODO FIXME Command does not work!
-command! AccentCycle call accent#Cycle(matchstr(getline('.'), '\%'.col('.').'c.'))
-
+" TODO completefunc does not trigger when the char is accented.
+" NOTES: inoremap and noremap added
